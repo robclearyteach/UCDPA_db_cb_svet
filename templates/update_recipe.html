@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Recipe{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Recipe</h1>
+
+    <!-- Form to update a recipe -->
+    <form method="POST" action="{{ url_for('update_recipe_route', recipe_id=recipe.id) }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}<br>
+            {{ form.title(size=32, class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.ingredients.label(class="form-label") }}<br>
+            {{ form.ingredients(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.instructions.label(class="form-label") }}<br>
+            {{ form.instructions(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="image" class="form-label">Image:</label><br>
+            <input type="file" id="image" name="image" class="form-control-file"><br>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Recipe</button>
+    </form>
+
+    <div class="actions">
+        <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-secondary">Cancel and return to Recipe</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Recipes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Search Recipes by Ingredients</h1>
+
+    <!-- Search form for recipes -->
+    <form class="search-form" method="POST" action="{{ url_for('search') }}">
+        <input type="text" id="search_term" name="search_term" placeholder="Enter ingredients..." required>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Display the search results in a grid -->
+    <div class="recipe-grid">
+        {% if recipes %}
+            {% for recipe in recipes %}
+
+                {% include 'search_recipe_variation.html' %}    
+
+            {% endfor %}
+        {% else %}
+            <!-- Message when no recipes match the search criteria -->
+            <p class="no-results">No recipes found matching your criteria.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

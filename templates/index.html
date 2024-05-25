@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 50px;">
+    <h1 class="heading">Welcome to the World of Pizza!</h1>
+    <p class="intro">Here, you will find the best and most delicious pizza recipes from around the globe.
+        Whether you're a fan of classic Margherita, spicy Pepperoni, or adventurous gourmet pizzas,
+        our collection has something for everyone. Dive into the art of pizza making and discover new flavors and techniques.
+        Don't forget to share your own exquisite pizza creations with our community.
+        Let's make the world a tastier place, one pizza at a time!</p>
+
+    <!-- Display all recipes in an interactive grid -->
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+            {% include 'index_recipe_variation.html' %} 
+        
+        {% else %}
+        <p class="no-results">No recipes found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Add Search Button -->
+    <div class="search-section">
+        <h2>Looking for something delicious and exquisite?</h2>
+        <p>You can search for it here!</p>
+        <a href="{{ url_for('search') }}" class="btn btn-primary">Search</a>
+    </div>
+</div>
+{% endblock %}

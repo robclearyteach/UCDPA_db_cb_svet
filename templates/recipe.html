@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ recipe.title }}</h1>
+
+    <!-- Recipe Details -->
+    <section class="recipe-details">
+        <h2>Ingredients</h2>
+        <p>{{ recipe.ingredients }}</p>
+
+        <h2>Instructions</h2>
+        <p>{{ recipe.instructions }}</p>
+
+        {% if recipe.image_name %}
+        <h2>Image</h2>
+        <!-- Display the recipe image if available -->
+        <img src="{{ url_for('static', filename='images/' + recipe.image_name) }}" alt="{{ recipe.title }}" class="recipe-image">
+        {% endif %}
+    </section>
+
+    <!-- Actions -->
+    <div class="actions">
+        <!-- Form to edit the recipe -->
+        <form action="{{ url_for('update_recipe_route', recipe_id=recipe.id) }}" method="get" style="display:inline-block;">
+            <button type="submit" class="btn btn-primary">Edit Recipe</button>
+        </form>
+        <!-- Form to delete the recipe -->
+        <form action="{{ url_for('delete_recipe_route', recipe_id=recipe.id) }}" method="post" style="display:inline-block;">
+            <button type="submit" class="btn btn-danger">Delete Recipe</button>
+        </form>
+        <!-- Link to go back to the homepage -->
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Go to Homepage</a>
+    </div>
+</div>
+{% endblock %}

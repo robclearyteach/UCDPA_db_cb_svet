@@ -1,0 +1,16 @@
+<div class="recipe-card">
+    <div class="recipe-card-inner">
+        <div class="recipe-card-front">
+            <!-- Display the front side of the recipe card with an image and title -->
+            <img src="{{ url_for('static', filename='images/' + recipe.image_name) }}" alt="{{ recipe.title }}" class="recipe-image">
+            <h3 class="recipe-title">{{ recipe.title }}</h3>
+        </div>
+        <div class="recipe-card-back">
+            <!-- Display the back side of the recipe card with the title and ingredients -->
+            <h3>{{ recipe.title }}</h3>
+            <p class="recipe-ingredients">{{ recipe.ingredients }}</p>
+            {% block variation %}
+            {% endblock %}
+         </div>
+    </div>
+</div>

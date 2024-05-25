@@ -1,0 +1,4 @@
+{% extends 'base_recipe_card.html' %}
+{% block variation %}
+    <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-secondary recipe-btn">View Recipe</a>
+{% endblock %}
